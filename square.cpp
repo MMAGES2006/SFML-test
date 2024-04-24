@@ -5,8 +5,7 @@ Square::Square(Vector2f size)
 {
     this->shape = RectangleShape(size);
     // this->shape.setFillColor(Color(190, 0, 190)); // RGB
-    this->shape.setFillColor(Color(rand() % 256, rand() % 256, rand() % 256)); // RGB
-
+    this->shape.setFillColor(Color::Blue); // RGB
     this->speed = Vector2f(5.f, 10.f);
     this->acc = Vector2f(0.f, 1.f);
 }
@@ -14,7 +13,8 @@ Square::Square(Vector2f size)
 Square::Square(Vector2f size, int x, int y)
 {
     this->shape = RectangleShape(size);
-    this->shape.setFillColor(Color(rand() % 256, rand() % 256, rand() % 256)); // RGB
+    // this->shape.setFillColor(Color(rand() % 256, rand() % 256, rand() % 256)); // RGB
+    this->shape.setFillColor(Color::Blue);
     this->speed = Vector2f(5.f, 10.f);
     this->shape.setPosition(Vector2f(x, y));
     this->acc = Vector2f(0.f, 1.f);
@@ -39,4 +39,13 @@ void Square::update()
 void Square::drawTo(RenderWindow &window)
 {
     window.draw(shape);
+}
+
+void Square::click(int x, int y)
+{
+    Vector2f pos = this->shape.getPosition();
+    Vector2f size = this->shape.getSize();
+
+    if (x >= pos.x && pos.x + cuad.w >= cuad.position.x)
+        this->shape.setFillColor(Color::Blue) = shape.setFillColor(Color::Red);
 }

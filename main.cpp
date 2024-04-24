@@ -10,7 +10,7 @@ int main()
 {
     RenderWindow window(VideoMode(800, 600), "SFML works!");
     Square shape(Vector2f(50.f, 50.f));
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(30);
     vector<Square> cuadrados;
 
     while (window.isOpen())
@@ -24,12 +24,25 @@ int main()
             {
                 if (event.mouseButton.button == Mouse::Left)
                 {
-                    int w = rand() % 100;
-                    int h = rand() % 100;
+                    // int w = rand() % 100;
+                    // int h = rand() % 100;
+                    int w = 100;
+                    int h = 100;
                     int x = event.mouseButton.x;
                     int y = event.mouseButton.y;
                     Square cuad(Vector2f(w, h), x, y);
                     cuadrados.push_back(cuad);
+                }
+
+                if (event.mouseButton.button == Mouse::Right)
+                {
+                    int x = event.mouseButton.x;
+                    int y = event.mouseButton.y;
+                    for (auto &c : cuadrados)
+                    {
+                        if (this->position)
+                            c.click(x, y);
+                    }
                 }
             }
         }
