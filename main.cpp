@@ -40,8 +40,7 @@ int main()
                     int y = event.mouseButton.y;
                     for (auto &c : cuadrados)
                     {
-                        if (this->position)
-                            c.click(x, y);
+                        c.click(x, y);
                     }
                 }
             }
