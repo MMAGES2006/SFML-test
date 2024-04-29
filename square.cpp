@@ -46,6 +46,6 @@ void Square::click(int x, int y)
     Vector2f pos = this->shape.getPosition();
     Vector2f size = this->shape.getSize();
 
-    if (x >= pos.x && pos.x + cuad.w >= cuad.position.x)
-        this->shape.setFillColor(Color::Blue) = shape.setFillColor(Color::Red);
+   // if (x >= pos.x && pos.x + cuad.w >= cuad.position.x)
+     //   this->shape.setFillColor(Color::Blue) = shape.setFillColor(Color::Red);
 }
