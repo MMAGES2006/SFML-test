@@ -10,12 +10,13 @@ class Grid
 {
 private:
     vector<vector<int>> tablero;
-    int rows, cols;
+    int rows, cols, w, h, n;
 
 public:
     Grid(int cols, int rows);
     Grid(int n, int w, int h);
     void drawTo(RenderWindow &window);
+    void toggle(int x, int y);
 };
 
 #endif
