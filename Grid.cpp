@@ -14,8 +14,14 @@ Grid::Grid(int rows, int cols)
     }
 }
 
+Grid::Grid(int n, int w, int h)
+{
+}
+
 void Grid::drawTo(RenderWindow &window)
 {
+    int sizeX = this->w;
+    int sizeY = this->h;
     for (int i = 0; i < this->rows; i++)
     {
         for (int j = 0; j < this->cols; j++)

@@ -1,9 +1,14 @@
 #include <SFML/Graphics.hpp>
+#include "Grid.hpp"
 using namespace sf;
+
+int numCells = 5;
+int width = 200;
+int height = 200;
 int main()
 {
     RenderWindow window(VideoMode(200, 200), "SFML works!");
-    Grid grid(5, 5);
+    Grid grid(numCells, width, height);
     while (window.isOpen())
     {
         Event event;
@@ -14,7 +19,7 @@ int main()
         }
 
         window.clear();
-        grid.drawTo();
+        grid.drawTo(window);
         window.display();
     }
 

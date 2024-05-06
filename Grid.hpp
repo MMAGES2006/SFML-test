@@ -14,6 +14,7 @@ private:
 
 public:
     Grid(int cols, int rows);
+    Grid(int n, int w, int h);
     void drawTo(RenderWindow &window);
 };
 
