@@ -10,6 +10,8 @@ class Grid
 {
 private:
     vector<vector<int>> tablero;
+    vector<vector<int>> siguiente;
+
     int rows, cols, w, h, n;
 
 public:
@@ -17,6 +19,8 @@ public:
     Grid(int n, int w, int h);
     void drawTo(RenderWindow &window);
     void toggle(int x, int y);
+    void update();
+    int calcularVecinos(int i, int j);
 };
 
 #endif

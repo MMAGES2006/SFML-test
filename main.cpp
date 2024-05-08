@@ -9,6 +9,7 @@ int main()
 {
     RenderWindow window(VideoMode(width, height), "SFML works!");
     Grid grid(numCells, width, height);
+
     while (window.isOpen())
     {
         Event event;
@@ -16,6 +17,7 @@ int main()
         {
             if (event.type == Event::Closed)
                 window.close();
+
             if (event.type == Event::MouseButtonPressed)
             {
                 if (event.mouseButton.button == Mouse::Left)
@@ -28,6 +30,7 @@ int main()
         }
 
         window.clear();
+        grid.update();
         grid.drawTo(window);
         window.display();
     }

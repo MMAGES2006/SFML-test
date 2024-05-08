@@ -12,6 +12,8 @@ Grid::Grid(int rows, int cols)
             tablero[i].push_back(0);
         }
     }
+
+    this->siguiente = vector<vector<int>>(rows, vector<int>(cols, 0));
 }
 
 Grid::Grid(int n, int w, int h)
@@ -28,6 +30,8 @@ Grid::Grid(int n, int w, int h)
             tablero[i].push_back(rand() % 2);
         }
     }
+
+    this->siguiente = vector<vector<int>>(rows, vector<int>(cols, 0));
 }
 
 void Grid::drawTo(RenderWindow &window)
@@ -61,7 +65,7 @@ void Grid::toggle(int x, int y)
     int indexX = x / sizeX;
     int indexY = y / sizeY;
 
-    if (tablero[indexY][indexX] == 0)
+    /*if (tablero[indexY][indexX] == 0)
     {
         tablero[indexY][indexX] = 1;
     }
@@ -69,7 +73,75 @@ void Grid::toggle(int x, int y)
     {
         tablero[indexY][indexX] = 0;
     }
-    // tablero[indexY][indexX] = ;
+    tablero[indexY][indexX] = ;
+*/
+    tablero[indexX][indexY] = (tablero[indexX][indexY] + 1) % 2;
+}
 
-    tablero[indexY][indexX] = (tablero[indexY][indexX] + 1) % 2;
+void Grid::update()
+{
+    for (int i = 0; i < this->rows; i++)
+    {
+        for (int j = 0; j < this->cols; j++)
+        {
+            int vecinos = this->calcularVecinos(i, j);
+            if (this->tablero[i][j] == 1)
+            {
+                if (vecinos < 2 || vecinos > 3)
+                {
+                    this->siguiente[i][j] = 0;
+                }
+                else
+                {
+                    this->siguiente[i][j] = 1;
+                }
+            }
+            else
+            {
+                if (vecinos == 3)
+                {
+                    this->siguiente[i][j] = 1;
+                }
+                else
+                {
+                    this->siguiente[i][j] = 0;
+                }
+            }
+        }
+    }
+    this->tablero = this->siguiente;
+}
+
+int Grid::calcularVecinos(int i, int j)
+{
+    int vecinos = 0;
+    // arriba a la izquierda
+    if (i > 0 && j > 0 && this->tablero[i - 1][j - 1] == 1)
+        vecinos++;
+    // arriba
+    if (j > 0 && this->tablero[i][j - 1] == 1)
+        vecinos++;
+    // arriba a la derecha
+    if (i < rows - 1 && j > 0 && this->tablero[i + 1][j - 1] == 1)
+        vecinos++;
+
+    // derecha
+    if (i < rows - 1 && j > 0 && this->tablero[i + 1][j] == 1)
+        vecinos++;
+
+    // abajo a la derecha
+    if (i < rows - 1 && j < cols - 1 && this->tablero[i + 1][j + 1] == 1)
+        vecinos++;
+    // abajo
+    if (i > 0 && j < cols - 1 && this->tablero[i][j + 1] == 1)
+        vecinos++;
+    // abajo a la izquierda
+    if (i > 0 && j < cols - 1 && this->tablero[i - 1][j + 1] == 1)
+        vecinos++;
+
+    // izquierda
+    if (i > 0 && j > 0 && this->tablero[i - 1][j] == 1)
+        vecinos++;
+
+    return vecinos;
 }
